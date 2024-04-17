@@ -73,7 +73,7 @@ const stagesForConditionChecking = {
   failure: 'FAILURE',
   load: 'LOADER',
 }
-
+let timer = null;
 class JobsDetails extends Component {
   state = {
     name: '',
@@ -88,6 +88,7 @@ class JobsDetails extends Component {
     locationListsContains: [],
     filteredData:[]
   }
+  
 
   componentDidMount() {
     this.SubmitDetailsOfUser()
@@ -229,21 +230,33 @@ class JobsDetails extends Component {
   }
 
   changeInput = event => {
+    event.preventDefault();
     this.setState({inputValue: event.target.value})
+    // console.log(this.state.inputValue);
+    // console.log(this.state.totallJobs);
+    clearTimeout(timer);
+    timer=setTimeout(()=>{
+    const DataValue = this.state.totallJobs.filter(item =>
+      item.title.toLowerCase().includes(this.state.inputValue.toLowerCase()),
+    )
+    this.setState({filteredData:DataValue})
+
+  },1000)
   }
 
-  searchInputDown = event => {
-    if (event.key === 'Enter') {
-      const DataValue = dataList.filter(item =>
-        item?.name.toLowerCase().includes(this.state.inputValue.toLowerCase()),
-      )
-      this.setFilteredData(DataValue)
-    }
-  }
+  // searchInputDown = event => {
+  //   if (event.key === 'Enter') {
+  //     const DataValue = this.state.totallJobs.filter(item =>
+  //       item.title.toLowerCase().includes(this.state.inputValue.toLowerCase()),
+  //     )
+  //     this.setState({filteredData:DataValue})
+  //     console.log(this.state.filteredData);
+  //   }
+  // }
 
-  buttonSearch = () => {
-    this.jobsData()
-  }
+  // buttonSearch = () => {
+  //   this.jobsData()
+  // }
 
   RadioChange = event => {
     this.setState({RadioInput: event.target.id}, this.jobsData)
@@ -298,7 +311,7 @@ class JobsDetails extends Component {
   }
 
   renderALlData = () => {
-    const {totallJobs, locationListsContains} = this.state
+    const {filteredData,totallJobs, locationListsContains} = this.state
     console.log(locationListsContains)
 
     const detailsForLocation = totallJobs.filter(each =>
@@ -307,10 +320,11 @@ class JobsDetails extends Component {
     console.log(detailsForLocation)
 
     return (
+
       <div className="AllDataOfItems">
         {detailsForLocation.length === 0 ? (
           <div>
-            {totallJobs.map(each => (
+            {(filteredData.length>0?filteredData:totallJobs).map(each => (
               <JobCard each={each} key={each.id} />
             ))}
           </div>
@@ -356,11 +370,11 @@ class JobsDetails extends Component {
                 type="search"
                 placeholder="Search"
                 value={inputValue}
-                onKeyDown={this.searchInputDown}
+                // onKeyDown={this.searchInputDown}
               />
               <button
                 className="ButtonSearch"
-                onClick={this.buttonSearch}
+                // onClick={this.buttonSearch}
                 type="button"
                 data-testid="searchButton"
               >

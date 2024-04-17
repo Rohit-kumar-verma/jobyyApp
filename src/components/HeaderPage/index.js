@@ -31,13 +31,15 @@ const Header = props => {
       </ul>
 
       <ul className="HomeAndJobs">
-        <NavLink className="HJ" to="/">
-          <li className="HomeAndJobsStyle">Home</li>
+      <li className="HomeAndJobsStyle">
+        <NavLink activeClassName="custom-active" exact to="/">Home
         </NavLink>
+        </li>
         &nbsp;&nbsp;&nbsp;
-        <Link className="HJ" to="/jobs">
-          <li className="HomeAndJobsStyle">Jobs</li>
-        </Link>
+        <li className="HomeAndJobsStyle">
+        <NavLink activeClassName="custom-active" exact to="/jobs">Jobs
+        </NavLink>
+        </li>
       </ul>
 
       <ul className="HomeAndJobsSmallScreens">

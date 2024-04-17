@@ -21,6 +21,11 @@
   flex-direction: row;
   justify-content: space-between;
   width: 110px;
+  text-decoration: none;
+}
+.HomeAndJobs a{
+  text-decoration: none;
+  color: gray;
 }
 .webSiteLogo {
   height: 33px;
@@ -29,15 +34,14 @@
 .HomeAndJobsStyle {
   font-size: 18px;
   list-style-type: none;
-  text-decoration: none;
-  color: #ffffff;
 }
+
 .liWebSiteLogo {
   list-style-type: none;
   text-decoration: none;
 }
-.HJ {
-  text-decoration: none;
+.HomeAndJobsStyle a.custom-active{
+  color:  #ffffff;
 }
 
 @media (min-width: 768px) {
@@ -93,7 +97,10 @@
     flex-direction: row;
     justify-content: space-between;
     width: 110px;
+    list-style-type: none;
+    text-decoration: none;
   }
+
   .webSiteLogo {
     height: 33px;
     margin-left: 0px;
@@ -103,9 +110,6 @@
   }
   .liWebSiteLogo {
     list-style-type: none;
-    text-decoration: none;
-  }
-  .HJ {
     text-decoration: none;
   }
 }
