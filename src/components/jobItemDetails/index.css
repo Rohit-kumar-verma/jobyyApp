@@ -17,14 +17,11 @@
 }
 .similar-jobs {
   list-style-type: none;
-  /* display: flex; */
   flex-wrap: wrap;
   background-color: black;
   width: 100%;
   background-size: cover;
   height: 100%;
-  /* flex-direction: row; */
-  /* justify-content: space-between; */
   display: grid;
   grid-template-columns: 4fr 4fr;
   gap: 30px;
